@@ -22,6 +22,7 @@ public interface DetailChat {
     void setToolbarVisibility(boolean visible);
     void setItem(ShopItem item);
     void setShop(Shop shop);
+    Shop getShop();
   }
 
   interface DetailTo extends State{
@@ -32,6 +33,7 @@ public interface DetailChat {
     boolean isMapsClicked();
     void onScreenResumed();
     Shop getShop();
+    void setShop(Shop shop);
   }
 
   ///////////////////////////////////////////////////////////////////////////////////

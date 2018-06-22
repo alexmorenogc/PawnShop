@@ -78,14 +78,7 @@ public class ChatModel
     }
   }
 
-  @Override
-  public void deleteItem(ShopItem item) {
-    if (MasterDetailData.getItemsFromDatabase().contains(item)){
-      MasterDetailData.deleteItem(item);
-    } else {
-      getPresenter().onErrorDeletingItem(item);
-    }
-  }
+
 
 
   /**
@@ -104,10 +97,6 @@ public class ChatModel
     validDatabase = valid;
   }
 
-  @Override
-  public String getErrorMessage() {
-    return errorMsg;
-  }
 
   /////////////////////////////////////////////////////////////////////////////////////
 

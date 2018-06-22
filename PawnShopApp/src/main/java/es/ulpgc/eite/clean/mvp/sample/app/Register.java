@@ -1,10 +1,10 @@
 package es.ulpgc.eite.clean.mvp.sample.app;
 
 import android.util.Log;
-
 import java.util.ArrayList;
 
 public class Register {
+
     private static Register log;
     private static ArrayList<String> logger;
 
@@ -24,10 +24,10 @@ public class Register {
     }
 
     public static void showLog(){
-        Log.d("REGISTRO:", "showLog: ");
+        Log.d("Register:", "Register: ");
         for(String line : logger){
-            Log.d("REGISTRO", "showLog: " + line);
+            Log.d("Register", "showLog: " + line);
         }
-        Log.d("REGISTRO", "showLog: Fin del Registro");
+        Log.d("Register", "showLog: Fin del Registro");
     }
 }

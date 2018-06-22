@@ -40,9 +40,7 @@ public interface Chat {
     boolean isCalendarClicked();
     boolean isMapsClicked();
     void onScreenResumed();
-    void setItemToDelete(ShopItem item);
     Shop getShop();
-
   }
 
   ///////////////////////////////////////////////////////////////////////////////////
@@ -56,7 +54,6 @@ public interface Chat {
     void onMapsButtonClicked();
     void onCalendarButtonClicked();
     void onItemClicked(ShopItem item);
-    void onRestoreActionClicked();
     void onResumingContent();
   }
 
@@ -67,7 +64,6 @@ public interface Chat {
     void finishScreen();
     void hideProgress();
     void hideToolbar();
-    void showError(String msg);
     void showProgress();
     void setRecyclerAdapterContent(List<ShopItem> items);
   }
@@ -76,12 +72,9 @@ public interface Chat {
    * Methods offered to MODEL to communicate with PRESENTER
    */
   interface PresenterToModel extends Model<ModelToPresenter> {
-    void deleteItem(ShopItem item);
     void loadItems();
-    void reloadItems();
     void setDatabaseValidity(boolean valid);
-    String getErrorMessage();
-
+    void reloadItems();
   }
 
   /**
@@ -89,7 +82,6 @@ public interface Chat {
    */
   interface ModelToPresenter {
     Context getManagedContext();
-    void onErrorDeletingItem(ShopItem item);
     void onLoadItemsTaskFinished(List<ShopItem> items);
     void onLoadItemsTaskStarted();
   }

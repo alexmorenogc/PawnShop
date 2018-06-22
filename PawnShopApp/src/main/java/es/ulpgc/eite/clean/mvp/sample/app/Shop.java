@@ -78,7 +78,7 @@ public class Shop extends RealmObject {
     }
 
     public int getTimetable() {
-        return timetable;
+        return this.timetable;
     }
 
     public String getLatitude() { return latitude; }

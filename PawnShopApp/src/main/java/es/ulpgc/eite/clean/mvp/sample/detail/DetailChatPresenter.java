@@ -108,20 +108,13 @@ public class DetailChatPresenter
     return getModel().getItem();
   }
 
-  /**
-   * Llamado ante una acción de borrado.
-   * En este caso, además de notificar al maestro del nuevo estado es necesario finalizar el detalle
-   */
-
   @Override
   public void onNextClicked(ShopItem item) {
     getModel().getNextItem();
   }
 
   @Override
-  public void onPrevClicked(ShopItem item) {
-    getModel().getPrevItem();
-
+  public void onPrevClicked(ShopItem item) { getModel().getPrevItem();
   }
 
   @Override
@@ -165,6 +158,7 @@ public class DetailChatPresenter
     Log.d(TAG, "calling onScreenStarted()");
     setCurrentState();
     checkVisibility();
+    Log.d(TAG, "onScreenStarted: shop:" + shop.getName());
   }
 
   @Override
@@ -176,11 +170,12 @@ public class DetailChatPresenter
   public void onScreenResumed() {
     Log.d(TAG, "calling onScreenResumed()");
     setCurrentState();
+    Log.d(TAG, "onScreenResumed: shop:" + shop.getName());
   }
 
   @Override
   public Shop getShop() {
-    return shop;
+    return this.shop;
   }
 
   @Override

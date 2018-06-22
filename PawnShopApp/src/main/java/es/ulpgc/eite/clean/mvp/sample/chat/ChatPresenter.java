@@ -25,7 +25,6 @@ public class ChatPresenter
   private Shop shop;
   private boolean hideToolbar;
   private ShopItem selectedItem;
-  private ShopItem itemToDelete;
   private boolean hideProgress;
 
   /**
@@ -147,19 +146,6 @@ public class ChatPresenter
     mediator.goToDetailScreen(this);
   }
 
-
-  /**
-   * Llamado para restaurar el contenido inicial de la lista del maestro
-   * ya que pueden haberse borrado elementos desde el detalle
-   */
-  @Override
-  public void onRestoreActionClicked() {
-    Log.d(TAG, "calling reloadItems()");
-    // Llamado para restaurar el contenido inicial de la lista y su funcionamiento es
-    // semejante al encargado de cargar los datos la primera vez
-    getModel().reloadItems();
-  }
-
   /**
    * Llamado desde la vista cada vez que se reinicia el maestro.
    * Esta llamada puede hacerse por giro de pantalla o por finalización del detalle pero,
@@ -198,15 +184,6 @@ public class ChatPresenter
   public void onScreenResumed() {
     Log.d(TAG, "calling onScreenResumed()");
     setCurrentState();
-    if(itemToDelete != null) {
-      Log.d(TAG, "calling deleteItem()");
-      getModel().deleteItem(itemToDelete);
-    }
-  }
-
-  @Override
-  public void setItemToDelete(ShopItem item) {
-    itemToDelete = item;
   }
 
   @Override
@@ -274,13 +251,6 @@ public class ChatPresenter
 
   ////////////////////////////////////////////////////////////////////////////////////
   // Model To Presenter //////////////////////////////////////////////////////////////
-
-  @Override
-  public void onErrorDeletingItem(ShopItem item) {
-    if(isViewRunning()) {
-      getView().showError(getModel().getErrorMessage());
-    }
-  }
 
 
   /**

@@ -26,7 +26,7 @@ public class CalendarPresenter
   //State
   private Shop shop;
   private String name, mail, dateSelected, products;
-  private boolean ifAppointment;
+  private boolean appointment;
   private int phone;
   private ArrayList<String> hours;
   private int idHour;
@@ -185,19 +185,19 @@ public class CalendarPresenter
 
     // Lectura en SharedPreferences de la reserva
     SharedPreferences sharedPref = getManagedContext().getSharedPreferences(APPOINTMENT, Context.MODE_PRIVATE);
-    ifAppointment = sharedPref.getBoolean(APPOINTMENT,false);
+    appointment = sharedPref.getBoolean(APPOINTMENT,false);
 
 
-    if (ifAppointment){
+    if (appointment){
       // Obtención de la fecha reservada, y comparación con la fecha de hoy para bloquear futuras reservas
-      String appointment = sharedPref.getString(APPOINTMENT_DATE,null);
-      java.util.Calendar appointmentCalendar = convertToCalendar(appointment);
+      String appointment_date = sharedPref.getString(APPOINTMENT_DATE,null);
+      java.util.Calendar appointmentCalendar = convertToCalendar(appointment_date);
       java.util.Calendar todayCalendar = java.util.Calendar.getInstance();
       if (todayCalendar.getTimeInMillis() >= appointmentCalendar.getTimeInMillis()){
-        ifAppointment = false;
+        appointment = false;
         // TODO: 28/5/18 ELIMINAR SHAREDPREFERENCES
       } else {
-        dateSelected = appointment;
+        dateSelected = appointment_date;
       }
     }
     setCurrentState();
@@ -210,7 +210,7 @@ public class CalendarPresenter
 
   @Override
   public void setAppointment(boolean ifAppointment) {
-    this.ifAppointment = ifAppointment;
+    this.appointment = ifAppointment;
   }
 
   @Override
@@ -305,7 +305,7 @@ public class CalendarPresenter
 
   @Override
   public boolean isAppointment() {
-    return ifAppointment;
+    return appointment;
   }
 
   @Override
@@ -371,7 +371,7 @@ public class CalendarPresenter
    */
   private void checkButtonEnable() {
     if (isViewRunning()) {
-      if (!ifAppointment) {
+      if (!appointment) {
         getView().enableSendButton();
         getView().enableCalendarView();
         getView().enableHourSpinner();
@@ -391,7 +391,7 @@ public class CalendarPresenter
    */
   @Override
   public void setAppointment() {
-    ifAppointment = true;
+    appointment = true;
     checkButtonEnable();
 
     SharedPreferences sharedPref = getManagedContext().getSharedPreferences(APPOINTMENT, Context.MODE_PRIVATE);

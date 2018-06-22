@@ -86,12 +86,4 @@
         layout="@layout/content_chat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <include
-        layout="@layout/menu"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom" />
-
 </android.support.design.widget.CoordinatorLayout>

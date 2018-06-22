@@ -22,45 +22,23 @@ public class DetailChatView
     implements DetailChat.PresenterToView {
 
 
-  private ImageButton menuImage;
+  //private ImageButton menuImage;
   private ShopItem item;
   private Toolbar toolbar;
   private CollapsingToolbarLayout toolbarLayout;
   private AppBarLayout appbarLayout;
 
   @Override
+  public boolean onSupportNavigateUp() {
+    onBackPressed();
+    return true;
+  }
+
+  @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_item_detail);
     Log.d(TAG, "calling onCreate()");
-
-    // Menú inferior
-    ImageButton mapsMenuImage = (ImageButton) findViewById(R.id.m_maps);
-    ImageButton calendarMenuImage = (ImageButton) findViewById(R.id.m_calendar);
-    ImageButton webMenuImage = (ImageButton) findViewById(R.id.m_shop);
-    menuImage = (ImageButton) findViewById(R.id.m_chat);
-
-    // Listeners del menú
-    mapsMenuImage.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        getPresenter().onMapsButtonClicked();
-      }
-    });
-
-    webMenuImage.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        getPresenter().onShopButtonClicked();
-      }
-    });
-
-    calendarMenuImage.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-       getPresenter().onCalendarButtonClicked();
-      }
-    });
 
     toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
     setSupportActionBar(toolbar);
@@ -70,6 +48,7 @@ public class DetailChatView
     if (actionbar != null) {
       actionbar.setDisplayHomeAsUpEnabled(true);
     }
+
 
     toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
     appbarLayout = (AppBarLayout) findViewById(R.id.appbar_layout);
@@ -103,13 +82,13 @@ public class DetailChatView
   @Override
   protected void onResume() {
     super.onResume(DetailChatPresenter.class, this);
-    menuImage.setImageResource(R.drawable.ic_chat_icon_m);
+    //menuImage.setImageResource(R.drawable.ic_chat_icon_m);
 
     item = getPresenter().getItem();
     if (toolbarLayout != null && item != null) {
       toolbarLayout.setTitle(item.getContent());
     }
-    // Show the dummy content as text in a TextView.
+    // Show the content as text in a TextView.
     if (item != null) {
       ((TextView) findViewById(R.id.item_detail)).setText(item.getDetails());
     }
@@ -153,8 +132,8 @@ public class DetailChatView
     if (item != null) {
       ((TextView) findViewById(R.id.item_detail)).setText(item.getDetails());
     }
-    Register.newLog("DETALLE TIENDAS");
-    Register.showLog();
+    Register.getLog().newLog("DETALLE TIENDAS");
+    Register.getLog().showLog();
   }
 
 }

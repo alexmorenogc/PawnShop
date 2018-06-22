@@ -151,7 +151,13 @@ public class CalendarView
    */
   @Override
   public void setHours(ArrayList<String> hours) {
-    this.hours.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, hours));
+    if (hours != null){
+      this.hours.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, hours));
+    } else {
+      ArrayList<String> empty = new ArrayList<>();
+      empty.add("Loading...");
+      this.hours.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, empty));
+    }
   }
 
   @Override

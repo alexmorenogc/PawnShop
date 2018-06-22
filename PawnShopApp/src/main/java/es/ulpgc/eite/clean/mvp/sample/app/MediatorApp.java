@@ -34,12 +34,10 @@ public class MediatorApp extends Application implements Mediator.Lifecycle, Medi
   public void onCreate() {
     super.onCreate();
     Realm.init(this);
-    Register.getLog();
 
     Log.d(TAG, "calling onCreate()");
 
     Log.d(TAG, "calling creatingInitialState()");
-
     }
 
   @Override
@@ -70,8 +68,8 @@ public class MediatorApp extends Application implements Mediator.Lifecycle, Medi
 
   @Override
   public void startingScreen(Maps.ToMaps presenter) {
-    Register.newLog("MAPAS");
-    Register.showLog();
+    Register.getLog().newLog("MAPAS");
+    Register.getLog().showLog();
     if (toMapsState != null) {
       Log.d(TAG, "calling settingMapsState()");
       presenter.setShop(toMapsState.shop);
@@ -92,8 +90,8 @@ public class MediatorApp extends Application implements Mediator.Lifecycle, Medi
 
   @Override
   public void startingMasterScreen(Chat.ToChat presenter) {
-    Register.newLog("MAESTRO TIENDAS");
-    Register.showLog();
+    Register.getLog().newLog("MAESTRO TIENDAS");
+    Register.getLog().showLog();
 
     if (toChatState != null) {
       Log.d(TAG, "calling settingChatState()");
@@ -117,8 +115,8 @@ public class MediatorApp extends Application implements Mediator.Lifecycle, Medi
 
   @Override
   public void startingDetailScreen(DetailChat.ToDetail presenter){
-    Register.newLog("DETALLE TIENDAS");
-    Register.showLog();
+    Register.getLog().newLog("DETALLE TIENDAS");
+    Register.getLog().showLog();
 
     if(toDetailState != null) {
       Log.d(TAG, "calling settingDetailChatState()");
@@ -136,8 +134,8 @@ public class MediatorApp extends Application implements Mediator.Lifecycle, Medi
 
   @Override
   public void startingScreen(Webshop.ToWebshop presenter) {
-    Register.newLog("WEBSHOP");
-    Register.showLog();
+    Register.getLog().newLog("WEBSHOP");
+    Register.getLog().showLog();
 
     if (toShopState != null) {
       Log.d(TAG, "calling settingChatState()");
@@ -159,20 +157,20 @@ public class MediatorApp extends Application implements Mediator.Lifecycle, Medi
 
   @Override
   public void startingScreen(Calendar.ToCalendar presenter) {
-    Register.newLog("CALENDARIO");
-    Register.showLog();
+    Register.getLog().newLog("CALENDARIO");
+    Register.getLog().showLog();
 
     if (toCalendarState != null) {
       Log.d(TAG, "calling settingCalendarState()");
       presenter.setShop(toCalendarState.shop);
       presenter.setDateView(toCalendarState.dateSelected);
-      presenter.setAppointment(toCalendarState.ifAppointment);
+      presenter.setAppointment(toCalendarState.appointment);
       presenter.setNameInputText(toCalendarState.name);
       presenter.setPhoneInputText(toCalendarState.phone);
       presenter.setMailInputText(toCalendarState.mail);
       presenter.setProductsInputText(toCalendarState.products);
       presenter.setHourSelected(toCalendarState.idHour);
-      presenter.setAppointment(toCalendarState.ifAppointment);
+      presenter.setAppointment(toCalendarState.appointment);
 
       Log.d(TAG, "calling removingInitialCalendarState()");
       toCalendarState = null;
@@ -331,7 +329,12 @@ public class MediatorApp extends Application implements Mediator.Lifecycle, Medi
     toChatState = new ChatState();
     toChatState.shop = presenter.getShop();
     toChatState.validDatabase = true;
-    presenter.destroyView();
+
+    Context view = presenter.getManagedContext();
+    if (view != null){
+      Log.d(TAG, "calling destroyView()");
+      presenter.destroyView();
+    }
   }
 
   @Override
@@ -440,7 +443,7 @@ public class MediatorApp extends Application implements Mediator.Lifecycle, Medi
     toCalendarState.mail = presenter.getMailInputText();
     toCalendarState.phone = presenter.getPhoneInputText();
     toCalendarState.products = presenter.getProductsInputText();
-    toCalendarState.ifAppointment = presenter.isAppointment();
+    toCalendarState.appointment = presenter.isAppointment();
 
     if (presenter.isChatClicked()){
       toChatState = new ChatState();
@@ -508,7 +511,7 @@ public class MediatorApp extends Application implements Mediator.Lifecycle, Medi
     Shop shop;
     String dateSelected;
     int idHour;
-    boolean ifAppointment;
+    boolean appointment;
     String name;
     String mail;
     int phone;
