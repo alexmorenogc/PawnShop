@@ -1,0 +1,96 @@
+{
+  "shops" :
+  [
+    {
+      "id": 0,
+      "name": "General mas de Gaminde",
+      "code": "0047",
+      "zone": 0,
+      "mail": "0047@nocheydia.es",
+      "timetable":0,
+      "latitude": "28.1334307",
+      "longitude": "-15.4339218"
+    },
+    {
+      "id": 1,
+      "name": "Vecindario",
+      "code": "0053",
+      "zone": 0,
+      "mail": "0053@nocheydia.es",
+      "timetable":0,
+      "latitude": "27.8438423",
+      "longitude": "-15.4437497"
+    },
+    {
+      "id": 2,
+      "name": "La Ballena",
+      "code": "0075",
+      "zone": 0,
+      "mail": "0075@nocheydia.es",
+      "timetable":1,
+      "latitude": "28.1015129",
+      "longitude": "-15.4424514"
+    },
+    {
+      "id": 3,
+      "name": "Triana",
+      "code": "0089",
+      "zone": 0,
+      "mail": "0089@nocheydia.es",
+      "timetable":0,
+      "latitude": "28.1055502",
+      "longitude": "-15.4153973"
+    }
+  ],
+  "timetable":
+    [
+      {
+        "id": 0,
+        "name": "Partido",
+        "timetable":[
+          { "idHour": 0, "hour": "10:00-10:30" },
+          { "idHour": 1, "hour": "10:30-11:00" },
+          { "idHour": 2, "hour": "11:00-11:30" },
+          { "idHour": 3, "hour": "11:30-12:00" },
+          { "idHour": 4, "hour": "12:00-12:30" },
+          { "idHour": 5, "hour": "12:30-13:00" },
+          { "idHour": 6, "hour": "13:00-13:30" },
+          { "idHour": 7, "hour": "16:30-17:00" },
+          { "idHour": 8, "hour": "17:00-17:30" },
+          { "idHour": 9, "hour": "17:30-18:00" },
+          { "idHour": 10, "hour": "18:00-18:30" },
+          { "idHour": 11, "hour": "18:30-19:00" },
+          { "idHour": 12, "hour": "19:00-19:30" }
+          ]
+      },
+      {
+        "id": 1,
+        "name": "Centro Comercial",
+        "timetable":[
+          { "idHour": 0, "hour": "10:00-10:30" },
+          { "idHour": 1, "hour": "10:30-11:00" },
+          { "idHour": 2, "hour": "11:00-11:30" },
+          { "idHour": 3, "hour": "11:30-12:00" },
+          { "idHour": 4, "hour": "12:00-12:30" },
+          { "idHour": 5, "hour": "12:30-13:00" },
+          { "idHour": 6, "hour": "13:00-13:30" },
+          { "idHour": 7, "hour": "13:30-14:00" },
+          { "idHour": 8, "hour": "14:00-14:30" },
+          { "idHour": 9, "hour": "14:30-15:00" },
+          { "idHour": 10, "hour": "15:00-15:30" },
+          { "idHour": 11, "hour": "15:30-16:00" },
+          { "idHour": 12, "hour": "16:00-16:30" },
+          { "idHour": 13, "hour": "16:30-17:00" },
+          { "idHour": 14, "hour": "17:00-17:30" },
+          { "idHour": 15, "hour": "17:30-18:00" },
+          { "idHour": 16, "hour": "18:00-18:30" },
+          { "idHour": 17, "hour": "18:30-19:00" },
+          { "idHour": 18, "hour": "19:00-19:30" },
+          { "idHour": 19, "hour": "19:30-20:00" },
+          { "idHour": 20, "hour": "20:00-20:30" },
+          { "idHour": 21, "hour": "20:30-21:00" },
+          { "idHour": 22, "hour": "21:00-21:30" }
+          ]
+      }
+    ]
+}

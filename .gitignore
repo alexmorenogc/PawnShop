@@ -1,0 +1,55 @@
+######################################
+### Default contents of .gitignore ###
+######################################
+
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+
+####################################################################
+### Additionals which facilitate sharing Android Studio projects ###
+####################################################################
+
+# Internal JIdea files
+.idea/encodings.xml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/markdown-navigator
+
+# Built application files
+*.apk
+*.ap_
+
+# Files for the Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+
+# Caches
+.ser
+
+# Proguard folder (for projects imported from Eclipse)
+proguard/
+
+# Log Files
+*.log
+
+# Android Studio Navigation editor temp files
+.navigation/
+
+### Android Patch ###
+gen-external-apklibs
+
+### Java ###
+*.class

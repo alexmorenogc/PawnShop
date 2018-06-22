@@ -1,0 +1,35 @@
+<resources>
+    <!--
+    Textos Generales
+    -->
+    <string name="app_name">CashConvertersApp</string>
+    <string name="dummy_screen_title">Screen Title</string>
+    <string name="action_settings">Settings</string>
+    <string name="screen_text">Test Text</string>
+    <string name="button_label">Button</string>
+    <!--
+    Textos de la Vista Home
+    -->
+    <string name="choose_shop">Elige una tienda:</string>
+    <string name="button_choose_shop">Ir a mi tienda</string>
+    <string-array name="spinner">
+        <item>Cargando tiendas...</item>
+    </string-array>
+    <!--
+    Textos de la Vista Calendar
+    -->
+    <string name="calendar_text">Pide una cita previa:</string>
+    <string name="send_text">Enviar</string>
+    <string-array name="hour">
+        <item>Cargando horas disponibles...</item>
+    </string-array>
+
+    <!--
+    Textos de la Vista Chat
+    -->
+    <string name="title_item_list">Lista de Tiendas</string>
+    <string name="title_screen_detail">Detail Screen</string>
+    <string name="title_screen_master">Master Screen</string>
+    <string name="button_prev">Anterior</string>
+    <string name="button_next">Siguiente</string>
+</resources>

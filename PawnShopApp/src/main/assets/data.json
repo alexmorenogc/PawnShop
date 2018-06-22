@@ -1,0 +1,42 @@
+[
+  {
+    "id": 0,
+    "name": "General mas de Gaminde",
+    "code": "0047",
+    "zone": 0,
+    "mail": "0047@nocheydia.es",
+    "timetable": 0,
+    "latitude": "28.1334307",
+    "longitude": "-15.4339218"
+  },
+  {
+    "id": 1,
+    "name": "Vecindario",
+    "code": "0053",
+    "zone": 0,
+    "mail": "0053@nocheydia.es",
+    "timetable": 0,
+    "latitude": "27.8438423",
+    "longitude": "-15.4437497"
+  },
+  {
+    "id": 2,
+    "name": "La Ballena",
+    "code": "0075",
+    "zone": 0,
+    "mail": "0075@nocheydia.es",
+    "timetable": 1,
+    "latitude": "28.1015129",
+    "longitude": "-15.4424514"
+  },
+  {
+    "id": 3,
+    "name": "Triana",
+    "code": "0089",
+    "zone": 0,
+    "mail": "0089@nocheydia.es",
+    "timetable": 0,
+    "latitude": "28.1055502",
+    "longitude": "-15.4153973"
+  }
+]
