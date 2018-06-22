@@ -21,6 +21,7 @@
 .idea/misc.xml
 .idea/vcs.xml
 .idea/markdown-navigator
+.idea/caches/build_file_checksums.ser
 
 # Built application files
 *.apk
@@ -35,9 +36,6 @@
 # Generated files
 bin/
 gen/
-
-# Caches
-.ser
 
 # Proguard folder (for projects imported from Eclipse)
 proguard/
