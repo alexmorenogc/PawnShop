@@ -8,10 +8,6 @@ import es.ulpgc.eite.clean.mvp.Presenter;
 import es.ulpgc.eite.clean.mvp.sample.app.Shop;
 import es.ulpgc.eite.clean.mvp.sample.data.ShopItem;
 
-/**
- * Created by Luis on 12/11/16.
- */
-
 public interface DetailChat {
 
 
@@ -35,7 +31,6 @@ public interface DetailChat {
     boolean isCalendarClicked();
     boolean isMapsClicked();
     void onScreenResumed();
-    ShopItem getItemToDelete();
     Shop getShop();
   }
 
@@ -50,7 +45,6 @@ public interface DetailChat {
     void onMapsButtonClicked();
     void onCalendarButtonClicked();
     ShopItem getItem();
-    void onDeleteActionClicked();
     void onNextClicked(ShopItem item);
     void onPrevClicked(ShopItem item);
   }

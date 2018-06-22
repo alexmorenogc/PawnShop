@@ -112,11 +112,6 @@ public class DetailChatPresenter
    * Llamado ante una acción de borrado.
    * En este caso, además de notificar al maestro del nuevo estado es necesario finalizar el detalle
    */
-  @Override
-  public void onDeleteActionClicked() {
-    Mediator.Navigation mediator = (Mediator.Navigation) getApplication();
-    mediator.backToMasterScreen(this);
-  }
 
   @Override
   public void onNextClicked(ShopItem item) {
@@ -234,17 +229,6 @@ public class DetailChatPresenter
     if(isViewRunning()) {
       getView().finishScreen();
     }
-  }
-
-  /**
-   * Llamado desde el mediador para recuperar el elemento de la lista que debe ser borrado
-   * en el maestro cuando este se reinicie al finalizar el detalle
-   *
-   * @return item a borrar de la lista en el maestro
-   */
-  @Override
-  public ShopItem getItemToDelete() {
-    return getModel().getItem();
   }
 
   ///////////////////////////////////////////////////////////////////////////////////

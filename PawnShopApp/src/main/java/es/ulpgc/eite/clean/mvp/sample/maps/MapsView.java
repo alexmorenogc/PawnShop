@@ -31,11 +31,9 @@ public class MapsView
     extends GenericActivity<Maps.PresenterToView, Maps.ViewToPresenter, MapsPresenter>
     implements Maps.PresenterToView  {
 
-
   private ImageButton menuImage;
   private MapView mapView;
   private GoogleMap map;
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -73,19 +71,15 @@ public class MapsView
         getPresenter().onChatButtonClicked();
       }
     });
-
     webMenuImage.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         getPresenter().onShopButtonClicked();
       }
     });
-    //
-
     calendarMenuImage.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onClick(View view) {
-        getPresenter().onCalendarButtonClicked();
+      public void onClick(View view) {getPresenter().onCalendarButtonClicked();
       }
     });
   }

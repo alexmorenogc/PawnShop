@@ -10,10 +10,6 @@ import es.ulpgc.eite.clean.mvp.Presenter;
 import es.ulpgc.eite.clean.mvp.sample.app.Shop;
 import es.ulpgc.eite.clean.mvp.sample.data.ShopItem;
 
-/**
- * Created by Luis on 12/11/16.
- */
-
 public interface Chat {
 
 

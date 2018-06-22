@@ -9,10 +9,6 @@ import es.ulpgc.eite.clean.mvp.sample.app.Shop;
 public class WebshopModel
     extends GenericModel<Webshop.ModelToPresenter> implements Webshop.PresenterToModel {
 
-
-  private Shop shop;
-
-
   /**
    * Method that recovers a reference to the PRESENTER
    * You must ALWAYS call {@link super#onCreate(Object)} here

@@ -22,7 +22,6 @@ public class DatabaseFacade {
         if (realmDatabase == null) {
             realmDatabase = Realm.getDefaultInstance();
         }
-
         return realmDatabase;
     }
 
@@ -40,15 +39,11 @@ public class DatabaseFacade {
         deleteShops();
     }
 
-
-
     public static void deleteShops(){
         for(Shop item: getShops()){
             deleteShop(item);
         }
     }
-
-
 
     public static void deleteShop(Shop item) {
         final Integer id = item.getId();
@@ -62,12 +57,8 @@ public class DatabaseFacade {
         });
     }
 
-
-
-
     public static void deleteShop(Integer id) {
         final Integer idToRemove = id;
-        //  Required by Java because it is referenced from an inner class
 
         getDatabase().executeTransaction(new Realm.Transaction() {
             @Override
@@ -79,12 +70,10 @@ public class DatabaseFacade {
         });
     }
 
-
     public static List<Shop> getShops(){
         Log.d("DatabaseFacade", "calling getShops() method");
         return getDatabase().where(Shop.class).findAll();
     }
-
 
     private static String makeDetails(int position) {
         StringBuilder builder = new StringBuilder();
@@ -122,6 +111,4 @@ public class DatabaseFacade {
 
         }
     }
-
-
 }

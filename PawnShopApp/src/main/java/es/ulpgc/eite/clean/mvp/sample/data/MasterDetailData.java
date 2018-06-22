@@ -28,13 +28,7 @@ public class MasterDetailData {
     public static List<ShopItem> getItemsFromDatabase(){
         Log.d(TAG, "calling getItemsFromDatabase() method");
 
-
         List<Shop> dbItems = DatabaseFacade.getShops();
-        //Log.d(TAG, "items=" +  dbItems);
-
-        // Adapt the contents of low-level ModelDbItems to high-level ModelItem components.
-
-
 
         List<ShopItem> modelItems = new ArrayList();
         for(Shop dbItem: dbItems) {

@@ -17,7 +17,6 @@ import es.ulpgc.eite.clean.mvp.sample.app.Shop;
 public class HomeModel
     extends GenericModel<Home.ModelToPresenter> implements Home.PresenterToModel {
 
-  //private DatabaseFacade db;
   private ArrayList<Shop> shopList;
   private DatabaseReference connection;
   private FirebaseDatabase database;

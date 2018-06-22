@@ -9,10 +9,6 @@ import es.ulpgc.eite.clean.mvp.Model;
 import es.ulpgc.eite.clean.mvp.Presenter;
 import es.ulpgc.eite.clean.mvp.sample.app.Shop;
 
-/**
- * Created by Luis on 12/11/16.
- */
-
 public interface Maps {
 
 

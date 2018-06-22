@@ -1,15 +1,12 @@
 package es.ulpgc.eite.clean.mvp.sample.detail;
 
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import java.util.List;
 
 import es.ulpgc.eite.clean.mvp.GenericModel;
-import es.ulpgc.eite.clean.mvp.sample.app.Shop;
 import es.ulpgc.eite.clean.mvp.sample.data.MasterDetailData;
 import es.ulpgc.eite.clean.mvp.sample.data.ShopItem;
-import es.ulpgc.eite.clean.mvp.sample.data.database.DatabaseFacade;
 
 
 public class DetailChatModel
@@ -90,7 +87,5 @@ public class DetailChatModel
     getPresenter().setItem(item);
     getPresenter().reloadView();
   }
-
-//
 
 }

@@ -7,7 +7,6 @@ public class ShopItem {
 
   private Shop dbItem;
 
-  //  Disabling the default constructor
   private ShopItem() {
 
   }
@@ -26,9 +25,9 @@ public class ShopItem {
 
   public String getDetails() {
     String mail = dbItem.getMail();
-    String nombre = dbItem.getName();
+    String name = dbItem.getName();
 
-    return "Nombre: " + nombre + "\n" + "Mail: " + mail + "\n";
+    return "Nombre: " + name + "\n" + "Mail: " + mail + "\n";
   }
 
   public String getId() {

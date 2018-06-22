@@ -18,9 +18,6 @@ import es.ulpgc.eite.clean.mvp.sample.app.Shop;
 public class MapsModel
     extends GenericModel<Maps.ModelToPresenter> implements Maps.PresenterToModel {
 
-
-  private Shop shop;
-  //private DatabaseFacade db;
   ArrayList<Shop> shopList;
   DatabaseReference connection;
   FirebaseDatabase database;
@@ -41,7 +38,6 @@ public class MapsModel
     database = FirebaseDatabase.getInstance();
     // Generar una referencia con la que conectar.
     connection = database.getReference();
-    //db = DatabaseFacade.getInstance();
   }
 
   /**
