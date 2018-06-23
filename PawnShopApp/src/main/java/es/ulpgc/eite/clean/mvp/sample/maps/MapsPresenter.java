@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 import es.ulpgc.eite.clean.mvp.ContextView;
@@ -23,8 +25,8 @@ public class MapsPresenter
   private boolean chatClicked;
   //State
   private Shop shop;
-  private static final String KEY_SHOP = "shopId";
-  private static final String SHOP_PREFERENCES = "SHOP";
+  private static final String KEY_SHOP = "shopKey";
+  private static final String SHOP_PREFERENCES = "shop";
 
   /**
    * Operation called during VIEW creation in {@link GenericActivity#onResume(Class, Object)}
@@ -222,9 +224,11 @@ public class MapsPresenter
     }
   }
   private void setSharedPreferences(Shop shop) {
-      SharedPreferences preferences = getManagedContext().getSharedPreferences(SHOP_PREFERENCES, Context.MODE_PRIVATE);
-      SharedPreferences.Editor editor = preferences.edit();
-      editor.putInt(KEY_SHOP,shop.getId());
-      editor.apply();
+    SharedPreferences preferences = getManagedContext().getSharedPreferences(SHOP_PREFERENCES, Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = preferences.edit();
+    Gson gson = new Gson();
+    String json = gson.toJson(shop);
+    editor.putString(KEY_SHOP,json);
+    editor.apply();
   }
 }
