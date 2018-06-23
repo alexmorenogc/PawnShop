@@ -2,6 +2,7 @@ package es.ulpgc.eite.clean.mvp.sample.maps;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class MapsPresenter
   private boolean chatClicked;
   //State
   private Shop shop;
+  private static final String KEY_SHOP = "shopId";
+  private static final String SHOP_PREFERENCES = "SHOP";
 
   /**
    * Operation called during VIEW creation in {@link GenericActivity#onResume(Class, Object)}
@@ -213,8 +216,15 @@ public class MapsPresenter
   @Override
   public void setNewShopSelected(Shop shop) {
     setShop(shop);
+    setSharedPreferences(shop);
     if (isViewRunning()){
       getView().setCenterCamera(shop);
     }
+  }
+  private void setSharedPreferences(Shop shop) {
+      SharedPreferences preferences = getManagedContext().getSharedPreferences(SHOP_PREFERENCES, Context.MODE_PRIVATE);
+      SharedPreferences.Editor editor = preferences.edit();
+      editor.putInt(KEY_SHOP,shop.getId());
+      editor.apply();
   }
 }
