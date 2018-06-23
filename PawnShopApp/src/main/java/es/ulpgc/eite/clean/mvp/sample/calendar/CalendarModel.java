@@ -34,7 +34,6 @@ public class CalendarModel
   public void onCreate(Calendar.ModelToPresenter presenter) {
     super.onCreate(presenter);
     Log.d(TAG, "calling onCreate()");
-    //db = DatabaseFacade.getInstance();
 
     // Conectar con la BBDD
     database = FirebaseDatabase.getInstance();

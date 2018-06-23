@@ -56,8 +56,8 @@ public interface Home {
    */
   interface PresenterToModel extends Model<ModelToPresenter> {
     void loadShopList();
-    Shop getShop(int position);
     void getShopAsync(int position);
+    void getShopAsyncToMaps(int shopId);
   }
 
   /**
@@ -65,7 +65,8 @@ public interface Home {
    */
   interface ModelToPresenter {
     void setShopList(ArrayList<String> names);
-    void setShopSelected(Shop value);
+    void setShopSelected(Shop shop);
+    void setShopSelectedToMaps(Shop shop);
   }
 
 }

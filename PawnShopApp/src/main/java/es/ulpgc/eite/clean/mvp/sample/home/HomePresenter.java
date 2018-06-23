@@ -36,9 +36,18 @@ public class HomePresenter
     setView(view);
     Log.d(TAG, "calling onCreate()");
 
-    Log.d(TAG, "calling startingScreen()");
-    Mediator.Lifecycle mediator = (Mediator.Lifecycle) getApplication();
-    mediator.startingScreen(this);
+    SharedPreferences sharedPref = getManagedContext().getSharedPreferences(SHOP_PREFERENCES, Context.MODE_PRIVATE);
+    int shopId = sharedPref.getInt(KEY_SHOP,-1);
+
+    Log.d(TAG, "onCreate: KEY_SHOP" + shopId);
+
+    if (shopId != -1){
+      getModel().getShopAsyncToMaps(shopId);
+    } else {
+      Log.d(TAG, "calling startingScreen()");
+      Mediator.Lifecycle mediator = (Mediator.Lifecycle) getApplication();
+      mediator.startingScreen(this);
+    }
   }
 
   /**
@@ -97,9 +106,6 @@ public class HomePresenter
   public void onButtonClicked(int position) {
     Log.d(TAG, "calling onButtonClicked()");
     getModel().getShopAsync(position);
-
-
-
   }
 
   @Override
@@ -152,7 +158,6 @@ public class HomePresenter
     }
   }
 
-
   ///////////////////////////////////////////////////////////////////////////////////
 
 
@@ -179,6 +184,14 @@ public class HomePresenter
     SharedPreferences.Editor editor = preferences.edit();
     editor.putInt(KEY_SHOP,shop.getId());
     editor.apply();
+
+    Mediator.Navigation mediator = (Mediator.Navigation) getApplication();
+    mediator.goToNextScreen(this);
+  }
+
+  @Override
+  public void setShopSelectedToMaps(Shop shop) {
+    this.shop = shop;
 
     Mediator.Navigation mediator = (Mediator.Navigation) getApplication();
     mediator.goToNextScreen(this);

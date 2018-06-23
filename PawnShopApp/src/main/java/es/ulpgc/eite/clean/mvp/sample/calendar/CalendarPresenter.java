@@ -195,7 +195,7 @@ public class CalendarPresenter
       java.util.Calendar todayCalendar = java.util.Calendar.getInstance();
       if (todayCalendar.getTimeInMillis() >= appointmentCalendar.getTimeInMillis()){
         appointment = false;
-        // TODO: 28/5/18 ELIMINAR SHAREDPREFERENCES
+        sharedPref.edit().remove(APPOINTMENT);
       } else {
         dateSelected = appointment_date;
       }

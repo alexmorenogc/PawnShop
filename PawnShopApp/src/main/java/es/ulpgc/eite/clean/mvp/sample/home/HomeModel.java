@@ -84,10 +84,6 @@ public class HomeModel
     });
   }
 
-  @Override
-  public Shop getShop(int position) {
-    return null;
-  }
 
   @Override
   public void getShopAsync(int position) {
@@ -96,6 +92,23 @@ public class HomeModel
       @Override
       public void onDataChange(DataSnapshot dataSnapshot) {
         getPresenter().setShopSelected(dataSnapshot.getValue(Shop.class));
+      }
+
+      @Override
+      public void onCancelled(DatabaseError databaseError) {
+        Log.d(TAG, "Error leyendo la BBDD. " + databaseError.toException());
+
+      }
+    });
+  }
+
+  @Override
+  public void getShopAsyncToMaps(int shopId) {
+    DatabaseReference myRef = connection.child("shops").child(Integer.toString(shopId));
+    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+      @Override
+      public void onDataChange(DataSnapshot dataSnapshot) {
+        getPresenter().setShopSelectedToMaps(dataSnapshot.getValue(Shop.class));
       }
 
       @Override
