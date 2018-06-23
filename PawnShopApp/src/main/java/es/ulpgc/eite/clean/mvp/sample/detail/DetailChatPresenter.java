@@ -158,7 +158,6 @@ public class DetailChatPresenter
     Log.d(TAG, "calling onScreenStarted()");
     setCurrentState();
     checkVisibility();
-    Log.d(TAG, "onScreenStarted: shop:" + shop.getName());
   }
 
   @Override

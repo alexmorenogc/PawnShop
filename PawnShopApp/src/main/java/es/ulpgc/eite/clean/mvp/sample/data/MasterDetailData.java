@@ -20,7 +20,6 @@ public class MasterDetailData {
         }
     }
 
-
     public static void deleteItem(ShopItem item) {
         DatabaseFacade.deleteShop(item.getDbItem());
     }
@@ -39,6 +38,15 @@ public class MasterDetailData {
         return modelItems;
     }
 
+    public static ShopItem getShopFromDatabase(int id){
+        Log.d(TAG, "calling getShopFromDatabase() method");
+        Shop item = DatabaseFacade.getShop(id);
+        if (item != null){
+            return new ShopItem(item);
+        } else {
+            return null;
+        }
+    }
 
     public static void loadItemsFromJsonFile(Context context, String filename) {
         Log.d(TAG, "calling loadItemsFromJsonFile() method");

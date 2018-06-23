@@ -54,38 +54,24 @@ public class DetailChatModel
 
   @Override
   public void getNextItem() {
-    List<ShopItem> list = MasterDetailData.getItemsFromDatabase();
-    for (int i=0; i < list.size(); i++){
-      if (list.get(i).equals(item)){
-        if (i== list.size() -1){
-          item = list.get(0);
-          break;
-        } else {
-          item = list.get(i+1);
-          break;
-        }
-      }
+    int itemNumber = Integer.parseInt(this.item.getId());
+    ShopItem itemShop = MasterDetailData.getShopFromDatabase(itemNumber + 1);
+    if (itemShop != null){
+      this.item = itemShop;
+      getPresenter().setItem(this.item);
+      getPresenter().reloadView();
     }
-    getPresenter().setItem(item);
-    getPresenter().reloadView();
   }
 
   @Override
   public void getPrevItem() {
-    List<ShopItem> list = MasterDetailData.getItemsFromDatabase();
-    for (int i=0; i < list.size(); i++){
-      if (list.get(i).equals(item)){
-        if (i==0){
-          item = list.get(list.size() - 1);
-          break;
-        } else {
-          item = list.get(i-1);
-          break;
-        }
-      }
+    int itemNumber = Integer.parseInt(this.item.getId());
+    ShopItem itemShop = MasterDetailData.getShopFromDatabase(itemNumber - 1);
+    if (itemShop != null){
+      this.item = itemShop;
+      getPresenter().setItem(this.item);
+      getPresenter().reloadView();
     }
-    getPresenter().setItem(item);
-    getPresenter().reloadView();
   }
 
 }

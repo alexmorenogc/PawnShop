@@ -75,6 +75,17 @@ public class DatabaseFacade {
         return getDatabase().where(Shop.class).findAll();
     }
 
+    public static Shop getShop(int id){
+        if (id >= 0 && id < getDatabase().where(Shop.class).count()){
+            return getDatabase().where(Shop.class).equalTo("id",id).findFirst();
+        }
+        return null;
+    }
+
+    public static Shop getNextShop (int id){
+        return getDatabase().where(Shop.class).equalTo("id",id+1).findFirst();
+    }
+
     private static String makeDetails(int position) {
         StringBuilder builder = new StringBuilder();
         builder.append("Details about Item: ").append(position).append("\n");

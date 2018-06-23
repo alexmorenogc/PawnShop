@@ -64,8 +64,8 @@ public class ChatModel
     if(!validDatabase && !runningTask) {
       startDelayedTask();
 
-      SharedPreferences sharedPref1 = getPresenter().getManagedContext().getSharedPreferences(VALIDATABASE, Context.MODE_PRIVATE);
-      SharedPreferences.Editor editor = sharedPref1.edit();
+      //SharedPreferences sharedPref1 = getPresenter().getManagedContext().getSharedPreferences(VALIDATABASE, Context.MODE_PRIVATE);
+      SharedPreferences.Editor editor = sharedPref.edit();
       editor.putBoolean(VALIDATABASE,true);
       editor.apply();
     } else if(!runningTask){
@@ -111,7 +111,6 @@ public class ChatModel
     Log.d(TAG, "calling onLoadItemsTaskStarted() method");
     getPresenter().onLoadItemsTaskStarted();
 
-    // Mock Hello: A handler to delay the answer
     new Handler().postDelayed(new Runnable() {
       @Override
       public void run() {

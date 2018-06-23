@@ -82,7 +82,6 @@ public class DetailChatView
   @Override
   protected void onResume() {
     super.onResume(DetailChatPresenter.class, this);
-    //menuImage.setImageResource(R.drawable.ic_chat_icon_m);
 
     item = getPresenter().getItem();
     if (toolbarLayout != null && item != null) {
