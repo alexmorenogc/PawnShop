@@ -1,6 +1,8 @@
 package es.ulpgc.eite.clean.mvp.sample.maps;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +16,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 
 import es.ulpgc.eite.clean.mvp.GenericActivity;
 import es.ulpgc.eite.clean.mvp.sample.R;
+import es.ulpgc.eite.clean.mvp.sample.app.Mediator;
 import es.ulpgc.eite.clean.mvp.sample.app.Shop;
 
 
@@ -53,15 +57,19 @@ public class MapsView
 
     mapView.onCreate(savedInstanceState);
 
-    map = mapView.getMap();
-    map.getUiSettings().setMyLocationButtonEnabled(false); //Obtener tu ubicacion actual.
-    map.getUiSettings().setMapToolbarEnabled(true); //Toolbar que nos permite la obción de abrir la aplicación de google maps.
-    map.getUiSettings().setZoomControlsEnabled(true);// Herramienta de hacer zoom con el mas y con el menos.
-    map.getUiSettings().setZoomGesturesEnabled(true); //Herramienta que nos permite hacer zoom con gestos con los dedos.
-    map.setMapType(GoogleMap.MAP_TYPE_SATELLITE); //Vista de satelite del mapa
-    map.setMapType(GoogleMap.MAP_TYPE_NORMAL); // Vista normal del mapa
-    map.setMapType(GoogleMap.MAP_TYPE_HYBRID); // Vista hibrida
-
+    mapView.getMapAsync(new OnMapReadyCallback() {
+      @Override
+      public void onMapReady(GoogleMap googleMap) {
+        map = googleMap;
+        map.getUiSettings().setMyLocationButtonEnabled(false); //Obtener tu ubicacion actual.
+        map.getUiSettings().setMapToolbarEnabled(true); //Toolbar que nos permite la obción de abrir la aplicación de google maps.
+        map.getUiSettings().setZoomControlsEnabled(true);// Herramienta de hacer zoom con el mas y con el menos.
+        map.getUiSettings().setZoomGesturesEnabled(true); //Herramienta que nos permite hacer zoom con gestos con los dedos.
+        map.setMapType(GoogleMap.MAP_TYPE_SATELLITE); //Vista de satelite del mapa
+        map.setMapType(GoogleMap.MAP_TYPE_NORMAL); // Vista normal del mapa
+        map.setMapType(GoogleMap.MAP_TYPE_HYBRID); // Vista hibrida
+      }
+    });
 
     MapsInitializer.initialize(this);
     // Listeners del menú
@@ -127,12 +135,34 @@ public class MapsView
     public void setMarkersToMap(ArrayList<Shop> mapShopList) {
       LatLng latLng;
       Marker marker;
-        for (int i = 0; i < mapShopList.size(); i++) {
-          latLng = new LatLng(mapShopList.get(i).getLatitudeD(), mapShopList.get(i).getLongitudeD());
-          Log.d(TAG, "onDataChange: Latitud: " + mapShopList.get(i).getLatitude());
-          BitmapDescriptor markerIcon = BitmapDescriptorFactory.fromResource(R.mipmap.maker_icon);
-          marker = map.addMarker(new MarkerOptions().position(latLng).title(mapShopList.get(i).getName()).icon(markerIcon));
+      for (int i = 0; i < mapShopList.size(); i++) {
+        latLng = new LatLng(mapShopList.get(i).getLatitudeD(), mapShopList.get(i).getLongitudeD());
+        BitmapDescriptor markerIcon = BitmapDescriptorFactory.fromResource(R.mipmap.maker_icon);
+        marker = map.addMarker(new MarkerOptions().position(latLng).title(mapShopList.get(i).getName()).icon(markerIcon));
+      }
+      map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+        @Override
+        public boolean onMarkerClick(final Marker marker) {
+          Log.d(TAG, "onMarkerClick: " + marker.getTitle());
+
+          // 1. Instantiate an AlertDialog.Builder with its constructor
+          AlertDialog.Builder builder = new AlertDialog.Builder(getActivityContext());
+          // 2. Chain together various setter methods to set the dialog characteristics
+          builder.setMessage("¿Desea poner por la tienda " + marker.getTitle() +" por defecto?")
+                  .setTitle("Seleccionar tienda por defecto.");
+          // 3. Get the AlertDialog from create()
+          builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+              getPresenter().changeShopSelected(marker.getTitle());
+            }
+          });
+          builder.setNegativeButton("NO", null);
+          AlertDialog dialog = builder.create();
+          dialog.show();
+          return true;
         }
+      });
     }
 
   /**

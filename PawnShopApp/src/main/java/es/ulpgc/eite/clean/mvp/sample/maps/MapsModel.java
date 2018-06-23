@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -67,8 +68,7 @@ public class MapsModel
       @Override
       public void onDataChange(DataSnapshot dataSnapshot) {
 
-        GenericTypeIndicator<ArrayList<Shop>> indicator = new GenericTypeIndicator<ArrayList<Shop>>() {
-        };
+        GenericTypeIndicator<ArrayList<Shop>> indicator = new GenericTypeIndicator<ArrayList<Shop>>() {};
         shopList = dataSnapshot.getValue(indicator);
         getPresenter().setMarkerList(shopList);
       }
@@ -78,5 +78,46 @@ public class MapsModel
         Log.d(TAG, "Error leyendo la BBDD. " + databaseError.toException());
       }
     });
+  }
+
+  @Override
+  public void loadNewShopSelected(final String shopName) {
+    Query query = connection.child("shops");
+    query.addListenerForSingleValueEvent(new ValueEventListener() {
+      @Override
+      public void onDataChange(DataSnapshot dataSnapshot) {
+        GenericTypeIndicator<ArrayList<Shop>> indicator = new GenericTypeIndicator<ArrayList<Shop>>() {};
+        shopList = dataSnapshot.getValue(indicator);
+        for (Shop item : shopList){
+          if (item.getName().equals(shopName)){
+            getPresenter().setNewShopSelected(item);
+          }
+        }
+      }
+
+      @Override
+      public void onCancelled(DatabaseError databaseError) {
+        Log.d(TAG, "Error leyendo la BBDD. " + databaseError.toException());
+      }
+    });
+
+    /*
+    connection = database.getReference();
+    Query query = connection.child("shops").orderByChild("name").equalTo(shopName);
+    query.addListenerForSingleValueEvent(new ValueEventListener() {
+      @Override
+      public void onDataChange(DataSnapshot dataSnapshot) {
+        GenericTypeIndicator<Shop> indicator = new GenericTypeIndicator<Shop>() {};
+        Shop item = dataSnapshot.getValue(indicator);
+        Log.d(TAG, "onDataChange: newShop " + item.getName());
+        getPresenter().setNewShopSelected(item);
+      }
+
+      @Override
+      public void onCancelled(DatabaseError databaseError) {
+        Log.d(TAG, "Error leyendo la BBDD. " + databaseError.toException());
+      }
+    });
+    */
   }
 }

@@ -127,6 +127,11 @@ public class MapsPresenter
     getModel().loadMapMarker();
   }
 
+  @Override
+  public void changeShopSelected(String shopName) {
+    getModel().loadNewShopSelected(shopName);
+  }
+
 
   ///////////////////////////////////////////////////////////////////////////////////
   // State /////////////////////////////////////////////////////////////////////////
@@ -201,6 +206,14 @@ public class MapsPresenter
   public void setMarkerList(ArrayList<Shop> mapShopList) {
     if (isViewRunning()){
       getView().setMarkersToMap(mapShopList);
+      getView().setCenterCamera(shop);
+    }
+  }
+
+  @Override
+  public void setNewShopSelected(Shop shop) {
+    setShop(shop);
+    if (isViewRunning()){
       getView().setCenterCamera(shop);
     }
   }

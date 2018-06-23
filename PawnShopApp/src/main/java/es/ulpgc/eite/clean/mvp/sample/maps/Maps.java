@@ -43,8 +43,8 @@ public interface Maps {
     void onShopButtonClicked();
     void onChatButtonClicked();
     void onCalendarButtonClicked();
-
-      void startLoadMarkerList();
+    void startLoadMarkerList();
+    void changeShopSelected(String shopName);
   }
 
   /**
@@ -60,8 +60,8 @@ public interface Maps {
    * Methods offered to MODEL to communicate with PRESENTER
    */
   interface PresenterToModel extends Model<ModelToPresenter> {
-
     void loadMapMarker();
+    void loadNewShopSelected(String shopName);
   }
 
   /**
@@ -69,6 +69,7 @@ public interface Maps {
    */
   interface ModelToPresenter {
     void setMarkerList(ArrayList<Shop> mapShopList);
+    void setNewShopSelected(Shop shop);
   }
 
 }
