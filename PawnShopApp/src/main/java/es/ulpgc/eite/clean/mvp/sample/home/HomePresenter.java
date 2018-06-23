@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 import es.ulpgc.eite.clean.mvp.ContextView;
@@ -18,8 +20,8 @@ public class HomePresenter
         <Home.PresenterToView, Home.PresenterToModel, Home.ModelToPresenter, HomeModel>
     implements Home.ViewToPresenter, Home.ModelToPresenter, Home.HomeTo, Home.ToHome {
 
-  private static final String KEY_SHOP = "shopId";
-  private static final String SHOP_PREFERENCES = "SHOP";
+  private static final String KEY_SHOP = "shopKey";
+  private static final String SHOP_PREFERENCES = "shop";
   private Shop shop;
 
   /**
@@ -36,13 +38,25 @@ public class HomePresenter
     setView(view);
     Log.d(TAG, "calling onCreate()");
 
+    /*
     SharedPreferences sharedPref = getManagedContext().getSharedPreferences(SHOP_PREFERENCES, Context.MODE_PRIVATE);
     int shopId = sharedPref.getInt(KEY_SHOP,-1);
 
-    Log.d(TAG, "onCreate: KEY_SHOP" + shopId);
-
     if (shopId != -1){
       getModel().getShopAsyncToMaps(shopId);
+    } else {
+      Log.d(TAG, "calling startingScreen()");
+      Mediator.Lifecycle mediator = (Mediator.Lifecycle) getApplication();
+      mediator.startingScreen(this);
+    }
+    */
+
+    this.shop = getShopPreferences();
+    if (shop != null){
+      Log.d(TAG, "calling goToNextScreen()");
+
+      Mediator.Navigation mediator = (Mediator.Navigation) getApplication();
+      mediator.goToNextScreen(this);
     } else {
       Log.d(TAG, "calling startingScreen()");
       Mediator.Lifecycle mediator = (Mediator.Lifecycle) getApplication();
@@ -179,11 +193,7 @@ public class HomePresenter
   @Override
   public void setShopSelected(Shop shopSelected) {
     shop = shopSelected;
-
-    SharedPreferences preferences = getManagedContext().getSharedPreferences(SHOP_PREFERENCES, Context.MODE_PRIVATE);
-    SharedPreferences.Editor editor = preferences.edit();
-    editor.putInt(KEY_SHOP,shop.getId());
-    editor.apply();
+    setShopPreferences(shopSelected);
 
     Mediator.Navigation mediator = (Mediator.Navigation) getApplication();
     mediator.goToNextScreen(this);
@@ -195,5 +205,21 @@ public class HomePresenter
 
     Mediator.Navigation mediator = (Mediator.Navigation) getApplication();
     mediator.goToNextScreen(this);
+  }
+
+  private void setShopPreferences(Shop shop){
+    SharedPreferences preferences = getManagedContext().getSharedPreferences(SHOP_PREFERENCES, Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = preferences.edit();
+    Gson gson = new Gson();
+    String json = gson.toJson(shop);
+    editor.putString(KEY_SHOP,json);
+    editor.apply();
+  }
+
+  private Shop getShopPreferences(){
+    SharedPreferences sharedPref = getManagedContext().getSharedPreferences(SHOP_PREFERENCES, Context.MODE_PRIVATE);
+    Gson gson = new Gson();
+    String json = sharedPref.getString(KEY_SHOP, "");
+    return gson.fromJson(json, Shop.class);
   }
 }
