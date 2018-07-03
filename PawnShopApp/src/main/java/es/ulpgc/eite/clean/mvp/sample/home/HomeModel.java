@@ -53,6 +53,10 @@ public class HomeModel
   ///////////////////////////////////////////////////////////////////////////////////
   // Presenter To Model ////////////////////////////////////////////////////////////
 
+  /**
+   * Método para cargar la lista de tiendas de Firebase, una vez cargada, la pasa al presentador
+   * sino hay tiendas, añade No hay tiendas.
+   */
   @Override
   public void loadShopList() {
     Log.d(TAG, "calling loadShopList()");
@@ -85,6 +89,10 @@ public class HomeModel
   }
 
 
+  /**
+   * Método que obtiene una tienda de Firebase con su posición
+   * @param position posición del array
+   */
   @Override
   public void getShopAsync(int position) {
     DatabaseReference myRef = connection.child("shops").child(Integer.toString(position));
@@ -102,6 +110,10 @@ public class HomeModel
     });
   }
 
+  /**
+   * Método que obtiene una tienda de Firebase con el idShop usado para pasar a maps automáticamente.
+   * @param shopId
+   */
   @Override
   public void getShopAsyncToMaps(int shopId) {
     DatabaseReference myRef = connection.child("shops").child(Integer.toString(shopId));

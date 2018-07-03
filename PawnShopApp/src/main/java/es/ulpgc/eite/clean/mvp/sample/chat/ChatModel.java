@@ -17,7 +17,6 @@ public class ChatModel
 
   private boolean runningTask;
   private boolean validDatabase;
-  private String errorMsg;
 
   private static final String VALIDATABASE = "VALIDDATABASE";
 
@@ -32,8 +31,6 @@ public class ChatModel
   public void onCreate(Chat.ModelToPresenter presenter) {
     super.onCreate(presenter);
     Log.d(TAG, "calling onCreate()");
-    errorMsg = "Error deleting item!";
-
   }
 
   /**
@@ -64,7 +61,6 @@ public class ChatModel
     if(!validDatabase && !runningTask) {
       startDelayedTask();
 
-      //SharedPreferences sharedPref1 = getPresenter().getManagedContext().getSharedPreferences(VALIDATABASE, Context.MODE_PRIVATE);
       SharedPreferences.Editor editor = sharedPref.edit();
       editor.putBoolean(VALIDATABASE,true);
       editor.apply();

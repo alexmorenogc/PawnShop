@@ -190,6 +190,10 @@ public class HomePresenter
     }
   }
 
+  /**
+   * Método que guarda la tienda seleccionada y pasa a la siguiente pantalla
+   * @param shopSelected
+   */
   @Override
   public void setShopSelected(Shop shopSelected) {
     shop = shopSelected;
@@ -199,6 +203,10 @@ public class HomePresenter
     mediator.goToNextScreen(this);
   }
 
+  /**
+   * Método que añade la tienda seleccionada para maps.
+   * @param shop
+   */
   @Override
   public void setShopSelectedToMaps(Shop shop) {
     this.shop = shop;
@@ -207,6 +215,10 @@ public class HomePresenter
     mediator.goToNextScreen(this);
   }
 
+  /**
+   * Método para generar las SharedPreferences.
+   * @param shop
+   */
   private void setShopPreferences(Shop shop){
     SharedPreferences preferences = getManagedContext().getSharedPreferences(SHOP_PREFERENCES, Context.MODE_PRIVATE);
     SharedPreferences.Editor editor = preferences.edit();
@@ -216,6 +228,10 @@ public class HomePresenter
     editor.apply();
   }
 
+  /**
+   * Método que obtiene el objeto de tienda en el SharedPreferences
+   * @return
+   */
   private Shop getShopPreferences(){
     SharedPreferences sharedPref = getManagedContext().getSharedPreferences(SHOP_PREFERENCES, Context.MODE_PRIVATE);
     Gson gson = new Gson();

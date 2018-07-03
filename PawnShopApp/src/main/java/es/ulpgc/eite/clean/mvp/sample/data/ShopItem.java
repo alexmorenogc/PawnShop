@@ -4,12 +4,9 @@ package es.ulpgc.eite.clean.mvp.sample.data;
 import es.ulpgc.eite.clean.mvp.sample.app.Shop;
 
 public class ShopItem {
-
   private Shop dbItem;
 
-  private ShopItem() {
-
-  }
+  private ShopItem() { }
 
   public ShopItem(Shop dbItem) {
     this.dbItem = dbItem;
@@ -24,10 +21,8 @@ public class ShopItem {
   }
 
   public String getDetails() {
-    String mail = dbItem.getMail();
-    String name = dbItem.getName();
-
-    return "Nombre: " + name + "\n" + "Mail: " + mail + "\n";
+    return "Nombre: " + dbItem.getMail() + "\n" +
+            "Mail: " + dbItem.getName() + "\n";
   }
 
   public String getId() {

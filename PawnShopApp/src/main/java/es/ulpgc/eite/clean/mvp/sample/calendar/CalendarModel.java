@@ -63,7 +63,6 @@ public class CalendarModel
   public void setBooking(final Booking booking, Shop shop) {
     getPresenter().setAppointment();
     connection.child("booking").push().setValue(booking);
-    // TODO: 26/5/18 Mandar mail
   }
 
   /**
@@ -86,7 +85,6 @@ public class CalendarModel
 
       @Override
       public void onCancelled(DatabaseError databaseError) {
-        // TODO: 27/5/18 Poner que guarde tire de Realm
       }
     });
   }
@@ -122,15 +120,11 @@ public class CalendarModel
 
       @Override
       public void onCancelled(DatabaseError databaseError) {
-        // TODO: 27/5/18 Poner que saque de Realm
       }
     });
   }
 
-
   ///////////////////////////////////////////////////////////////////////////////////
   // Presenter To Model ////////////////////////////////////////////////////////////
-
-
 
 }
