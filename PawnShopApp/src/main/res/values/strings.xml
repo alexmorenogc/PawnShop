@@ -3,10 +3,6 @@
     Textos Generales
     -->
     <string name="app_name">CashConvertersApp</string>
-    <string name="dummy_screen_title">Screen Title</string>
-    <string name="action_settings">Settings</string>
-    <string name="screen_text">Test Text</string>
-    <string name="button_label">Button</string>
     <!--
     Textos de la Vista Home
     -->
@@ -28,8 +24,4 @@
     Textos de la Vista Chat
     -->
     <string name="title_item_list">Lista de Tiendas</string>
-    <string name="title_screen_detail">Detail Screen</string>
-    <string name="title_screen_master">Master Screen</string>
-    <string name="button_prev">Anterior</string>
-    <string name="button_next">Siguiente</string>
 </resources>
